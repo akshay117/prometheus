@@ -1,4 +1,4 @@
-# Use an ARM64 base image for OpenJDK 11
+# Use an ARM64 base image for OpenJDK 17
 FROM arm64v8/openjdk:17-ea-32-jdk
 
 # Set the working directory
