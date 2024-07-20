@@ -1,5 +1,5 @@
 # Use an ARM64 base image for OpenJDK 11
-FROM arm64v8/openjdk:17-jre-slim
+FROM arm64v8/openjdk:17-ea-32-jdk
 
 # Set the working directory
 WORKDIR /opt/app
