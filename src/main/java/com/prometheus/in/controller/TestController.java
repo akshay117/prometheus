@@ -29,7 +29,7 @@ public class TestController {
 	                content = @Content) })
 	@Operation(summary = "Springdoc open api sample API")
 	public ResponseEntity postApiCall(@RequestBody RequestEntity request){
-	    System.out.println("Test----------------------------------------------Test ");
+	    System.out.println("Testing this method ");
 	    return new ResponseEntity(HttpStatus.OK);
 	}
 	
