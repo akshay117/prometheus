@@ -5,6 +5,13 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' //This just mounts Docker socket to access the host's Docker daemon
     }
   }
+    environment {
+        // Define environment variables here
+        DB_HOST = credentials('url')
+        DB_URL = "jdbc:postgresql://{DB_HOST}/newdb"
+        DB_USERNAME = credentials('db-username') // Use Jenkins credentials for sensitive data
+        DB_PASSWORD = credentials('db-password') // Use Jenkins credentials for sensitive data
+    }
   stages {
     stage('Checkout') {
       steps {
@@ -53,7 +60,11 @@ pipeline {
                         docker pull akshay117711/prometheus:${BUILD_NUMBER}
                         docker stop prometheus || true
                         docker rm prometheus || true
-                        docker run -d --name prometheus -p 8085:8080 akshay117711/prometheus:${BUILD_NUMBER}
+                        docker run -d --name prometheus -p 8085:8080 \
+                            -e SPRING_DATASOURCE_URL=${DB_URL} \
+                            -e SPRING_DATASOURCE_USERNAME=${DB_USERNAME} \
+                            -e SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD} \
+                            akshay117711/prometheus:${BUILD_NUMBER}
                     '''
                 }
           }
