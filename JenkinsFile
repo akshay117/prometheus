@@ -9,8 +9,8 @@ pipeline {
         // Define environment variables here
         DB_HOST = credentials('url')
         DB_URL = "jdbc:postgresql://{DB_HOST}/newdb"
-        DB_USERNAME = credentials('db-username') // Use Jenkins credentials for sensitive data
-        DB_PASSWORD = credentials('db-password') // Use Jenkins credentials for sensitive data
+        DB_USERNAME = credentials('username') // Use Jenkins credentials for sensitive data
+        DB_PASSWORD = credentials('password') // Use Jenkins credentials for sensitive data
     }
   stages {
     stage('Checkout') {
