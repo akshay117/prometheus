@@ -7,10 +7,10 @@ pipeline {
   }
     environment {
         // Define environment variables here
-        DB_HOST = 'url'
+        url = 'url'
         DB_URL = "jdbc:postgresql://{DB_HOST}/newdb"
-        DB_USERNAME = 'username' // Use Jenkins credentials for sensitive data
-        DB_PASSWORD = 'password' // Use Jenkins credentials for sensitive data
+        username = 'username' // Use Jenkins credentials for sensitive data
+        password = 'password' // Use Jenkins credentials for sensitive data
     }
   stages {
     stage('Checkout') {
@@ -61,7 +61,7 @@ pipeline {
                         docker stop prometheus || true
                         docker rm prometheus || true
                         docker run -d --name prometheus -p 8085:8080 \
-                            -e SPRING_DATASOURCE_URL=${DB_URL} \
+                            -e SPRING_DATASOURCE_URL=${url} \
                             -e SPRING_DATASOURCE_USERNAME=${DB_USERNAME} \
                             -e SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD} \
                             akshay117711/prometheus:${BUILD_NUMBER}
