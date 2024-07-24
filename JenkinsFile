@@ -23,7 +23,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-     sh 'mvn clean package -Ddb.host=${DB_HOST} -Ddb.username=${DB_USERNAME} -Ddb.password=${DB_PASSWORD}'
+         sh 'mvn clean package'
       }
     }
     stage('Static Code Analysis') {
