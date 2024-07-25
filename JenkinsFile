@@ -8,7 +8,7 @@ pipeline {
     environment {
         // Define environment variables here
         url = 'url'
-        DB_URL = "jdbc:postgresql://{DB_HOST}/newdb"
+        DB_URL = "jdbc:postgresql://${DB_HOST}/newdb"
         username = 'username' // Use Jenkins credentials for sensitive data
         password = 'password' // Use Jenkins credentials for sensitive data
     }
