@@ -22,6 +22,9 @@ pipeline {
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
+          echo "DB_URL: ${DB_URL}"
+          echo "DB_USERNAME: ${username}"
+          echo "DB_PASSWORD: ${password}"
         // build the project and create a JAR file
          sh 'mvn clean package'
       }
