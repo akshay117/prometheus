@@ -62,8 +62,8 @@ pipeline {
                         docker rm prometheus || true
                         docker run -d --name prometheus -p 8085:8080 \
                             -e SPRING_DATASOURCE_URL=${url} \
-                            -e SPRING_DATASOURCE_USERNAME=${DB_USERNAME} \
-                            -e SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD} \
+                            -e SPRING_DATASOURCE_USERNAME=${username} \
+                            -e SPRING_DATASOURCE_PASSWORD=${password} \
                             akshay117711/prometheus:${BUILD_NUMBER}
                     '''
                 }
