@@ -63,11 +63,11 @@ pipeline {
                         docker pull akshay117711/prometheus:${BUILD_NUMBER}
                         docker stop prometheus || true
                         docker rm prometheus || true
-                        docker run -d --name prometheus -p 8085:8080 \
-                            -e SPRING_DATASOURCE_URL=${url} \
-                            -e SPRING_DATASOURCE_USERNAME=${username} \
-                            -e SPRING_DATASOURCE_PASSWORD=${password} \
-                            akshay117711/prometheus:${BUILD_NUMBER}
+                       docker run -d --name prometheus -p 8085:8080 \
+                                -e SPRING_DATASOURCE_URL=${DB_URL} \
+                                -e SPRING_DATASOURCE_USERNAME=${DB_USERNAME} \
+                                -e SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD} \
+                                akshay117711/prometheus:${BUILD_NUMBER}
                     '''
                 }
           }
