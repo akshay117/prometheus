@@ -24,9 +24,6 @@ pipeline {
                     sh 'ls -ltr'
                     echo "DB_URL: ${DB_URL}"
                     // Securely using credentials
-                    echo "DB_USERNAME: ${env.DB_USERNAME}"
-                    // Avoid printing sensitive data
-                    // echo "DB_PASSWORD: ${env.DB_PASSWORD}"
                     // build the project and create a JAR file
                     sh 'mvn clean package'
          }
