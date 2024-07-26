@@ -6,7 +6,10 @@ pipeline {
     }
   }
 
-       // DB_URL = "jdbc:postgresql://${url}/newdb"
+    environment {
+        url = '129.154.251.29:5432'
+        DB_URL = "jdbc:postgresql://${url}/newdb"
+    }
 
   stages {
     stage('Checkout') {
