@@ -22,10 +22,21 @@ pipeline {
       steps {
               withCredentials([usernamePassword(credentialsId: 'DB_CREDENTIALS', usernameVariable: 'DB_USERNAME', passwordVariable: 'DB_PASSWORD')]) {
                     sh 'ls -ltr'
-                    echo "DB_URL: ${DB_URL}"
-                    // Securely using credentials
-                    // build the project and create a JAR file
-                    sh 'mvn clean package'
+    // Set environment variables for Maven build
+                        withEnv([
+                            "SPRING_DATASOURCE_URL=${DB_URL}",
+                            "SPRING_DATASOURCE_USERNAME=${DB_USERNAME}",
+                            "SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}"
+                        ]) {
+                            try {
+                                sh 'mvn clean package'
+                            } catch (Exception e) {
+                                // Capture and display the error logs
+                                sh 'cat target/surefire-reports/*.txt || true'
+                                error "Build failed. Please check the above logs for details."
+                     }
+                 }
+             }
          }
       }
     }
