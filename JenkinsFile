@@ -5,13 +5,9 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' //This just mounts Docker socket to access the host's Docker daemon
     }
   }
-    environment {
-        // Define environment variables here
-        url = 'url'
-        DB_URL = "jdbc:postgresql://${url}/newdb"
-        username = 'username' // Use Jenkins credentials for sensitive data
-        password = 'password' // Use Jenkins credentials for sensitive data
-    }
+
+       // DB_URL = "jdbc:postgresql://${url}/newdb"
+
   stages {
     stage('Checkout') {
       steps {
