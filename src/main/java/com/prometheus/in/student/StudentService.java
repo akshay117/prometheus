@@ -10,19 +10,26 @@ import java.util.List;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
+
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }
 
-    public Student putStudents(@RequestBody Student student){
+    public Student putStudents( Student student) {
         return studentRepository.save(student);
     }
 
-    public void addNewStudent(Student student) {
-        System.out.println(student);
+
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
+    }
+
+    public void updateStudent(Student student) {
+      studentRepository.save(student);
     }
 }
