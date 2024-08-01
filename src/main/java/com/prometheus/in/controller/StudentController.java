@@ -41,5 +41,33 @@ public class StudentController {
 	public Student createStudent(@RequestBody Student student) {
 		return studentService.putStudents(student);
 	}
+
+
+
+	@DeleteMapping("/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Results are ok", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Student.class))}),
+			@ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+			@ApiResponse(responseCode = "404", description = "resource not found", content = @Content)})
+	@Operation(summary = "Delete a record from DB")
+	public void delete(@PathVariable Long  id) {
+		studentService.deleteStudentById(id);
+
+	}
+
+	@PutMapping("/{id}")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Results are ok", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Student.class))}),
+			@ApiResponse(responseCode = "400", description = "Invalid request", content = @Content),
+			@ApiResponse(responseCode = "404", description = "resource not found", content = @Content)})
+	@Operation(summary = "Update a record from DB")
+	public void updateRecords(@RequestBody Student student) {
+		studentService.updateStudent(student);
+	}
+
+
+
 }
 
